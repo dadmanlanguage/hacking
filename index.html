@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NovaBook — Laptop & PC Parts Store</title>
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--tx:#10141f;--mut:#5b6478;--ac:#2f6bff;--ac2:#00d4b4;--bd:#dfe4ef;--hero:#e8eeff;--sh:0 10px 30px rgba(20,40,90,.12);--z:1}
+[data-theme=dark]{--bg:#0a0d16;--bg2:#131826;--tx:#eef1fa;--mut:#9aa4bd;--ac:#5c8dff;--ac2:#19e6c4;--bd:#232b40;--hero:#0d1226;--sh:0 10px 30px rgba(0,0,0,.5)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Sans Arabic","Noto Sans KR",sans-serif;background:var(--bg);color:var(--tx);transition:background .5s,color .5s;overflow-x:hidden;zoom:var(--z);line-height:1.6}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--ac2);outline-offset:2px}
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 5vw;background:var(--bg2);border-bottom:1px solid var(--bd);padding-top:max(12px,env(safe-area-inset-top))}
+.logo{font-weight:800;font-size:1.4rem;letter-spacing:-.5px}.logo b{color:var(--ac)}
+nav{display:flex;gap:22px}nav a{color:var(--mut);text-decoration:none;font-weight:600;transition:color .2s}nav a:hover{color:var(--ac)}
+.cart{background:var(--ac);color:#fff;border:0;border-radius:99px;padding:8px 18px;font-weight:700}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;padding:10px 5vw;background:var(--bg2);border-bottom:1px solid var(--bd);position:sticky;top:61px;z-index:49}
+.tb{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:8px 14px;font-weight:700;transition:.25s}
+.tb:hover{border-color:var(--ac);transform:translateY(-2px)}
+.langs{position:relative}.langmenu{position:absolute;top:110%;inset-inline-start:0;background:var(--bg2);border:1px solid var(--bd);border-radius:14px;box-shadow:var(--sh);padding:6px;display:none;min-width:150px;z-index:60}
+.langmenu.open{display:block;animation:pop .25s}.langmenu button{display:block;width:100%;background:none;border:0;padding:10px 12px;border-radius:10px;text-align:start}
+.langmenu button:hover,.langmenu button.on{background:var(--ac);color:#fff}
+@keyframes pop{from{opacity:0;transform:scale(.9) translateY(-8px)}}
+.theme{width:78px;height:38px;border-radius:99px;border:1px solid var(--bd);background:linear-gradient(90deg,#8fd3ff,#e8f4ff);position:relative;padding:0;overflow:hidden;transition:background .6s}
+[data-theme=dark] .theme{background:linear-gradient(90deg,#0b1030,#23306b)}
+.theme i{position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#ffc93c;box-shadow:0 0 14px #ffc93c;transition:transform .7s cubic-bezier(.7,-.4,.3,1.4),background .5s,box-shadow .5s}
+[data-theme=dark] .theme i{transform:translateX(40px) rotate(360deg);background:#e6ecff;box-shadow:inset -8px -3px 0 #8b97d6,0 0 12px #8b97d6}
+.sweep{position:fixed;inset:0;z-index:100;pointer-events:none;background:radial-gradient(circle,var(--ac) 0,var(--ac2) 100%);transform:translateX(-101%)}
+.sweep.go{animation:sw .9s ease-in-out}
+@keyframes sw{0%{transform:translateX(-101%)}45%,55%{transform:translateX(0)}100%{transform:translateX(101%)}}
+[dir=rtl] .sweep.go{animation-name:swr}
+@keyframes swr{0%{transform:translateX(101%)}45%,55%{transform:translateX(0)}100%{transform:translateX(-101%)}}
+/* HERO */
+.hero{position:relative;min-height:calc(100vh - 110px);display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 110%,var(--ac) -40%,transparent 60%),var(--hero);padding:40px 5vw 70px}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--bd) 1px,transparent 1px),linear-gradient(90deg,var(--bd) 1px,transparent 1px);background-size:48px 48px;opacity:.5;mask-image:radial-gradient(circle at 50% 60%,#000,transparent 70%);-webkit-mask-image:radial-gradient(circle at 50% 60%,#000,transparent 70%)}
+.htxt{position:relative;text-align:center;z-index:2;max-width:760px}
+.htxt h1{font-size:clamp(1.8rem,5vw,3.6rem);line-height:1.15;letter-spacing:-1px}
+.htxt p{color:var(--mut);margin:10px 0 0;font-size:clamp(.95rem,2vw,1.2rem)}
+.stage{--W:clamp(190px,46vw,320px);--D:calc(var(--W)*.68);--H:calc(var(--W)*.62);position:relative;width:min(680px,94vw);height:calc(var(--W)*1.25);perspective:1500px;margin-top:20px;z-index:2}
+.lap{position:absolute;left:50%;top:68%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(24deg) rotateY(360deg);animation:spin 10s ease-in-out forwards}
+@keyframes spin{from{transform:rotateX(26deg) rotateY(-70deg)}to{transform:rotateX(24deg) rotateY(360deg)}}
+.lap:before{content:"";position:absolute;width:calc(var(--W)*1.3);height:calc(var(--D)*1.3);left:calc(var(--W)*-.65);top:calc(var(--D)*-.65);transform:rotateX(90deg) translateZ(-16px);background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent);filter:blur(8px)}
+.base{position:absolute;width:var(--W);height:var(--D);left:calc(var(--W)/-2);top:calc(var(--D)/-2);transform:rotateX(90deg);background:linear-gradient(145deg,#d9deea,#98a1b7);border-radius:10px;border:2px solid #7d879d}
+.keys{position:absolute;inset:34% 7% 7%;display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:1fr;gap:3px}.keys span{background:#2f3750;border-radius:2px}
+.pad{position:absolute;left:34%;right:34%;top:8%;height:20%;border-radius:6px;background:#b3bbce;border:2px solid #7d879d}
+.lid{position:absolute;width:var(--W);height:var(--H);left:calc(var(--W)/-2);top:calc(var(--H)*-1);transform-origin:50% 100%;transform-style:preserve-3d;transform:translateZ(calc(var(--D)/-2)) translateY(-2px) rotateX(-90deg);animation:open 5s 4.5s cubic-bezier(.3,.1,.2,1) forwards}
+@keyframes open{from{transform:translateZ(calc(var(--D)/-2)) translateY(-2px) rotateX(-90deg)}to{transform:translateZ(calc(var(--D)/-2)) translateY(-2px) rotateX(8deg)}}
+.lidf{position:absolute;inset:0;background:#05080f;border:5px solid #aeb7ca;border-radius:10px 10px 4px 4px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.lidf:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,#8fb0ff,transparent 55%),linear-gradient(135deg,#2f6bff,#00d4b4 60%,#ff7ad9);opacity:0;animation:scr 1.5s 8.5s forwards}
+@keyframes scr{to{opacity:1}}
+.lidb{position:absolute;inset:0;background:linear-gradient(145deg,#d9deea,#98a1b7);border-radius:10px;transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center}
+.lidb:after{content:"";width:16%;aspect-ratio:1;border-radius:50%;background:#7d879d}
+.tag{position:absolute;z-index:5;background:var(--bg2);color:var(--tx);border:1px solid var(--ac);border-radius:10px;padding:4px 10px;font-size:.78rem;font-weight:700;box-shadow:var(--sh);opacity:0;white-space:nowrap;animation:tg .7s forwards}
+.tag:before{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--ac2);inset-inline-start:-4px;top:50%}
+@keyframes tg{from{opacity:0;margin-top:10px}to{opacity:1;margin-top:0}}
+/* sections */
+section{padding:60px 5vw}
+h2{font-size:clamp(1.4rem,3.2vw,2.2rem);margin-bottom:24px;letter-spacing:-.5px}
+.slider{position:relative;overflow:hidden;border-radius:22px;box-shadow:var(--sh)}
+.track{display:flex;transition:transform .8s cubic-bezier(.7,0,.2,1)}
+[dir=rtl] .track{flex-direction:row}
+.slide{min-width:100%;position:relative;min-height:clamp(260px,40vw,420px);display:flex;align-items:flex-end;color:#fff;background-size:cover;background-position:center}
+.slide:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,10,30,.88),rgba(5,10,30,.1))}
+.slide div{position:relative;padding:clamp(18px,4vw,44px);max-width:640px}
+.slide h3{font-size:clamp(1.2rem,3vw,2rem)}.slide p{opacity:.9}
+.badge{display:inline-block;background:var(--ac2);color:#001;font-weight:800;border-radius:8px;padding:2px 10px;margin-bottom:8px;font-size:.85rem}
+.arr{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#000;font-size:1.3rem;z-index:3}
+.arr.l{left:12px}.arr.r{right:12px}
+.dots{position:absolute;bottom:12px;inset-inline:0;display:flex;justify-content:center;gap:6px;z-index:3}.dots i{width:9px;height:9px;border-radius:9px;background:#fff6;transition:.4s;cursor:pointer}.dots i.on{width:28px;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;overflow:hidden;transition:transform .4s,box-shadow .4s}
+.card:hover{transform:translateY(-8px) rotate(-.4deg);box-shadow:var(--sh)}
+.card img{width:100%;height:190px;object-fit:cover;background:var(--hero)}
+.card div{padding:16px}.card h4{font-size:1.05rem}.card small{color:var(--mut)}
+.price{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-weight:800;font-size:1.15rem}
+.price button{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:7px 14px;font-weight:700}
+.brands{overflow:hidden;background:var(--bg2);border-block:1px solid var(--bd);padding:26px 0}
+.bt{display:flex;gap:60px;width:max-content;animation:mq 26s linear infinite}.brands:hover .bt{animation-play-state:paused}
+.bt span{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:800;color:var(--mut);transition:.3s}.bt span:hover{color:var(--ac);transform:scale(1.15)}.bt img{height:30px;width:30px;filter:grayscale(1);opacity:.7}
+@keyframes mq{to{transform:translateX(-50%)}}
+[dir=rtl] .bt{animation-name:mqr}@keyframes mqr{to{transform:translateX(50%)}}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.f{background:var(--bg2);border:1px solid var(--bd);border-radius:24px;padding:30px;position:relative;overflow:hidden;opacity:0;transform:translateY(60px) scale(.94);transition:all .9s cubic-bezier(.2,.8,.2,1)}
+.f.in{opacity:1;transform:none}.f:nth-child(2){transition-delay:.15s}.f:nth-child(3){transition-delay:.3s}
+.f:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:var(--ac);opacity:.08;inset-inline-end:-40px;top:-40px;transition:transform .6s}.f:hover:after{transform:scale(2.6)}
+.ic{font-size:2.6rem;display:inline-block;animation:fl 3s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px) rotate(6deg)}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;text-align:center}
+.stats b{display:block;font-size:2.4rem;color:var(--ac)}
+.news{background:linear-gradient(120deg,var(--ac),var(--ac2));color:#fff;border-radius:26px;padding:clamp(24px,5vw,48px);text-align:center}
+.news form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}.news input{padding:12px 16px;border-radius:12px;border:0;min-width:min(280px,100%);font:inherit}.news button{background:#10141f;color:#fff;border:0;border-radius:12px;padding:12px 22px;font-weight:700}
+footer{padding:30px 5vw calc(30px + env(safe-area-inset-bottom));text-align:center;color:var(--mut);border-top:1px solid var(--bd)}
+@media(max-width:820px){nav{display:none}.arr{width:36px;height:36px}.toolbar{top:57px}.tag{font-size:.62rem;padding:2px 6px}}
+@media(max-width:1100px) and (min-width:821px){nav{gap:14px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="sweep" id="sweep"></div>
+<header>
+  <div class="logo">Nova<b>Book</b></div>
+  <nav><a href="#deals" data-i="n1">Deals</a><a href="#feat" data-i="n2">Featured</a><a href="#brands" data-i="n3">Brands</a><a href="#why" data-i="n4">Why us</a></nav>
+  <button class="cart">🛒 <span data-i="cart">Cart</span> (0)</button>
+</header>
+<div class="toolbar">
+  <button class="tb" id="zi" aria-label="Zoom in">🔍＋</button>
+  <button class="tb" id="zo" aria-label="Zoom out">🔍－</button>
+  <div class="langs"><button class="tb" id="lb">🌐 <span id="ll">English</span> ▾</button>
+    <div class="langmenu" id="lm"><button data-l="en">English</button><button data-l="ko">한국어</button><button data-l="ar">العربية</button><button data-l="fa">فارسی</button></div></div>
+  <button class="theme" id="th" aria-label="Theme"><i></i></button>
+</div>
+
+<div class="hero">
+  <div class="htxt"><h1 data-i="h1">Powerful laptops. Honest prices.</h1><p data-i="h2">Watch a NovaBook open — every part explained.</p></div>
+  <div class="stage" id="stage">
+    <div class="lap">
+      <div class="base"><div class="keys" id="keys"></div><div class="pad"></div></div>
+      <div class="lid"><div class="lidf"></div><div class="lidb"></div></div>
+    </div>
+  </div>
+</div>
+
+<section id="deals">
+  <h2 data-i="s1">Parts, deals & offers</h2>
+  <div class="slider" id="sl1"><div class="track" id="tr1"></div>
+    <button class="arr l" aria-label="Prev">‹</button><button class="arr r" aria-label="Next">›</button><div class="dots"></div></div>
+</section>
+
+<section id="feat">
+  <h2 data-i="s2">Featured laptops</h2>
+  <div class="grid" id="pg"></div>
+</section>
+
+<div class="brands" id="brands"><div class="bt" id="bt"></div></div>
+
+<section id="why">
+  <h2 data-i="s3">Why NovaBook</h2>
+  <div class="feat">
+    <div class="f"><div class="ic">🛡️</div><h3 data-i="f1t">3-year warranty</h3><p data-i="f1d">Every laptop ships with a full warranty and free repair pickup.</p></div>
+    <div class="f"><div class="ic">🚚</div><h3 data-i="f2t">Fast delivery</h3><p data-i="f2d">Order today and get it in 48 hours, with live tracking.</p></div>
+    <div class="f"><div class="ic">💬</div><h3 data-i="f3t">Real expert support</h3><p data-i="f3d">Talk to engineers who build and test the machines we sell.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="stats">
+    <div><b data-n="12000">0</b><span data-i="st1">Happy customers</span></div>
+    <div><b data-n="350">0</b><span data-i="st2">Laptop models</span></div>
+    <div><b data-n="48">0</b><span data-i="st3">Hours delivery</span></div>
+    <div><b data-n="99">0</b><span data-i="st4">% 5-star support</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="news"><h2 data-i="nw">Get 10% off your first laptop</h2><form onsubmit="event.preventDefault();this.querySelector('button').textContent='✓'"><input type="email" required placeholder="you@email.com"><button data-i="sub">Subscribe</button></form></div>
+</section>
+<footer>© 2026 NovaBook · <span data-i="ft">All rights reserved.</span></footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const U=(id,w=900)=>`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`;
+/* i18n */
+const T={
+en:{n1:"Deals",n2:"Featured",n3:"Brands",n4:"Why us",cart:"Cart",h1:"Powerful laptops. Honest prices.",h2:"Watch a NovaBook open — every part explained.",s1:"Parts, deals & offers",s2:"Featured laptops",s3:"Why NovaBook",f1t:"3-year warranty",f1d:"Every laptop ships with a full warranty and free repair pickup.",f2t:"Fast delivery",f2d:"Order today and get it in 48 hours, with live tracking.",f3t:"Real expert support",f3d:"Talk to engineers who build and test the machines we sell.",st1:"Happy customers",st2:"Laptop models",st3:"Hours delivery",st4:"% 5-star support",nw:"Get 10% off your first laptop",sub:"Subscribe",ft:"All rights reserved.",buy:"Add",
+sl:[["SSD sale","Up to 40% off NVMe SSDs","Load apps in seconds."],["Hard drives","Big storage, small price","2TB–8TB drives from $54."],["RAM & GPU","Upgrade your performance","DDR5 kits and graphics cards in stock."],["Back to work","Free sleeve with any laptop","Limited time offer."]],
+tg:["Display","Webcam","Keyboard","Trackpad","CPU & cooling","Battery"]},
+ko:{n1:"특가",n2:"추천",n3:"브랜드",n4:"왜 우리인가",cart:"장바구니",h1:"강력한 노트북, 정직한 가격.",h2:"노트북이 열리는 모습을 보세요 — 모든 부품 설명.",s1:"부품 · 할인 · 프로모션",s2:"추천 노트북",s3:"NovaBook을 선택하는 이유",f1t:"3년 보증",f1d:"모든 노트북에 전체 보증과 무료 수리 픽업이 포함됩니다.",f2t:"빠른 배송",f2d:"오늘 주문하면 48시간 내 도착, 실시간 추적.",f3t:"전문가 지원",f3d:"판매하는 제품을 직접 테스트하는 엔지니어와 상담하세요.",st1:"만족한 고객",st2:"노트북 모델",st3:"시간 배송",st4:"% 별 5개 지원",nw:"첫 노트북 10% 할인",sub:"구독",ft:"모든 권리 보유.",buy:"담기",
+sl:[["SSD 세일","NVMe SSD 최대 40% 할인","앱이 몇 초 만에 실행됩니다."],["하드 드라이브","큰 용량, 작은 가격","2TB–8TB 드라이브 $54부터."],["RAM & GPU","성능을 업그레이드하세요","DDR5 키트와 그래픽카드 재고 보유."],["업무 복귀","노트북 구매 시 파우치 증정","한정 기간 혜택."]],
+tg:["디스플레이","웹캠","키보드","트랙패드","CPU 및 쿨링","배터리"]},
+ar:{n1:"العروض",n2:"المميزة",n3:"العلامات",n4:"لماذا نحن",cart:"السلة",h1:"حواسيب قوية. أسعار عادلة.",h2:"شاهد NovaBook يُفتح — مع شرح كل قطعة.",s1:"القطع والعروض والتخفيضات",s2:"حواسيب مميزة",s3:"لماذا NovaBook",f1t:"ضمان 3 سنوات",f1d:"كل حاسوب يأتي بضمان كامل واستلام مجاني للصيانة.",f2t:"توصيل سريع",f2d:"اطلب اليوم واستلم خلال 48 ساعة مع تتبع مباشر.",f3t:"دعم خبراء حقيقي",f3d:"تحدث مع مهندسين يختبرون الأجهزة التي نبيعها.",st1:"عملاء سعداء",st2:"موديل حاسوب",st3:"ساعة توصيل",st4:"% دعم 5 نجوم",nw:"خصم 10% على أول حاسوب",sub:"اشترك",ft:"جميع الحقوق محفوظة.",buy:"أضف",
+sl:[["تخفيض SSD","خصم يصل إلى 40% على SSD","شغّل التطبيقات في ثوانٍ."],["الأقراص الصلبة","سعة كبيرة بسعر صغير","أقراص 2–8 تيرا من 54$."],["الرام والكرت","طوّر أداءك","ذاكرات DDR5 وكروت الشاشة متوفرة."],["عودة للعمل","حقيبة مجانية مع أي حاسوب","لفترة محدودة."]],
+tg:["الشاشة","الكاميرا","لوحة المفاتيح","لوحة اللمس","المعالج والتبريد","البطارية"]},
+fa:{n1:"تخفیف‌ها",n2:"ویژه",n3:"برندها",n4:"چرا ما",cart:"سبد",h1:"لپ‌تاپ‌های قدرتمند. قیمت منصفانه.",h2:"باز شدن یک NovaBook را ببینید — با توضیح همه قطعات.",s1:"قطعات، تخفیف‌ها و تبلیغات",s2:"لپ‌تاپ‌های ویژه",s3:"چرا NovaBook",f1t:"۳ سال گارانتی",f1d:"هر لپ‌تاپ با گارانتی کامل و دریافت رایگان برای تعمیر ارسال می‌شود.",f2t:"ارسال سریع",f2d:"امروز سفارش دهید، ظرف ۴۸ ساعت با رهگیری زنده برسد.",f3t:"پشتیبانی تخصصی",f3d:"با مهندسانی صحبت کنید که دستگاه‌ها را تست می‌کنند.",st1:"مشتری راضی",st2:"مدل لپ‌تاپ",st3:"ساعت تحویل",st4:"% پشتیبانی ۵ ستاره",nw:"۱۰٪ تخفیف اولین خرید",sub:"عضویت",ft:"تمام حقوق محفوظ است.",buy:"افزودن",
+sl:[["حراج SSD","تا ۴۰٪ تخفیف روی SSD","برنامه‌ها در چند ثانیه اجرا می‌شوند."],["هارد دیسک","حجم بالا، قیمت پایین","هاردهای ۲ تا ۸ ترابایت از ۵۴ دلار."],["رم و کارت گرافیک","عملکرد را ارتقا دهید","رم DDR5 و کارت گرافیک موجود است."],["بازگشت به کار","کیف رایگان با خرید لپ‌تاپ","فقط برای مدت محدود."]],
+tg:["صفحه نمایش","وبکم","کیبورد","تاچ‌پد","پردازنده و خنک‌کننده","باتری"]}};
+const L={en:"English",ko:"한국어",ar:"العربية",fa:"فارسی"};
+const IMG=(k,n,w=800,h=600)=>`https://loremflickr.com/${w}/${h}/${k}?lock=${n}`;
+const slImgs=[IMG("ssd,computer",11,1200,600),IMG("harddrive,computer",12,1200,600),IMG("graphicscard,gpu",13,1200,600),IMG("laptop,desk",14,1200,600)];
+const P=[["Lenovo ThinkPad X1 Carbon","Intel Ultra 7 · 32GB · 1TB","1,649","lenovo,laptop",21],["Lenovo Legion 5 Pro","Ryzen 9 · RTX 4070","1,799","gaming,laptop",22],["Samsung Galaxy Book4 Pro","Ultra 7 · AMOLED 3K","1,449","samsung,laptop",23],["Samsung Galaxy Book4 Ultra","RTX 4050 · 32GB","2,199","samsung,notebook",24],["Apple MacBook Air 15″ M3","M3 · 16GB · 512GB","1,399","macbook,air",25],["Apple MacBook Pro 14″ M3 Pro","M3 Pro · 18GB · 1TB","2,299","macbook,pro",26]];
+const B=[["Lenovo","lenovo"],["Samsung","samsung"],["Apple","apple"],["Microsoft","microsoft"],["Dell","dell"],["HP","hp"],["ASUS","asus"],["Acer","acer"],["MSI","msi"],["Razer","razer"]];
+let lang="en";
+/* build */
+$("#keys").innerHTML="<span></span>".repeat(48);
+$("#bt").innerHTML=[...B,...B].map(b=>`<span><img src="https://cdn.simpleicons.org/${b[1]}" alt="" onerror="this.style.display='none'">${b[0]}</span>`).join("");
+$("#pg").innerHTML=P.map((p,i)=>`<article class="card"><img loading="lazy" src="${IMG(p[3],p[4],600,400)}" alt="${p[0]}" onerror="this.onerror=null;this.src='https://picsum.photos/seed/${p[4]}/600/400'"><div><h4>${p[0]}</h4><small>${p[1]}</small><div class="price"><span>$${p[2]}</span><button data-i="buy">Add</button></div></div></article>`).join("");
+function render(){const d=T[lang];
+ $$("[data-i]").forEach(e=>{if(d[e.dataset.i])e.textContent=d[e.dataset.i]});
+ $("#tr1").innerHTML=d.sl.map((s,i)=>`<div class="slide" style="background-image:url('${slImgs[i]}'),linear-gradient(135deg,#2f6bff,#00d4b4)"><div><span class="badge">-${[40,25,30,15][i]}%</span><h3>${s[1]}</h3><p>${s[0]} — ${s[2]}</p></div></div>`).join("");
+ go(cur);tags();}
+/* hero tags (appear after lid opens, ~10s) */
+const pos=[[50,6],[50,-4],[24,66],[50,92],[82,72],[86,38]];
+const ps=["right:13%;top:40%","left:50%;translate:-50% 0;top:27%","left:11%;top:68%","left:50%;translate:-50% 0;top:90%","left:9%;top:46%","right:9%;top:64%"];
+function tags(){$$(".tag").forEach(t=>t.remove());T[lang].tg.forEach((t,i)=>{const e=document.createElement("div");e.className="tag";e.textContent=t;e.style.cssText=ps[i]+";animation-delay:"+(done?0:8.6+i*.35)+"s";$("#stage").appendChild(e)})}
+let done=false;setTimeout(()=>done=true,10500);
+/* slider */
+let cur=0,n=4;
+function go(i){cur=(i+n)%n;const rtl=lang==="fa"||lang==="ar";$("#tr1").style.transform=`translateX(${(rtl?1:-1)*cur*100}%)`;$$(".dots i").forEach((d,k)=>d.classList.toggle("on",k===cur))}
+$(".dots").innerHTML="<i></i>".repeat(n);$$(".dots i").forEach((d,k)=>d.onclick=()=>go(k));
+$(".arr.l").onclick=()=>go(cur-1);$(".arr.r").onclick=()=>go(cur+1);setInterval(()=>go(cur+1),5000);
+/* zoom */
+let z=1;const setZ=v=>{z=Math.min(1.5,Math.max(.7,v));document.documentElement.style.setProperty("--z",z)};
+$("#zi").onclick=()=>setZ(z+.1);$("#zo").onclick=()=>setZ(z-.1);
+/* lang */
+$("#lb").onclick=e=>{e.stopPropagation();$("#lm").classList.toggle("open")};document.onclick=()=>$("#lm").classList.remove("open");
+$$("#lm button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;const h=document.documentElement;h.lang=lang;h.dir=(lang==="ar"||lang==="fa")?"rtl":"ltr";$("#ll").textContent=L[lang];$$("#lm button").forEach(x=>x.classList.toggle("on",x===b));render()});
+/* theme with sweep */
+$("#th").onclick=()=>{const s=$("#sweep");s.classList.remove("go");void s.offsetWidth;s.classList.add("go");setTimeout(()=>{const h=document.documentElement;h.dataset.theme=h.dataset.theme==="dark"?"light":"dark"},420)};
+/* reveal + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("in");const n=e.target.dataset.n;if(n){let v=0,t=+n,s=Math.ceil(t/60);const iv=setInterval(()=>{v=Math.min(t,v+s);e.target.textContent=v.toLocaleString();if(v>=t)clearInterval(iv)},25)}io.unobserve(e.target)}),{threshold:.3});
+$$(".f,[data-n]").forEach(e=>io.observe(e));
+render();
+</script>
+</body>
+</html>
 
