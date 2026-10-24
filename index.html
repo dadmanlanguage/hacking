@@ -62,8 +62,8 @@ h2{font-size:clamp(1.4rem,3.2vw,2.2rem);margin-bottom:24px;letter-spacing:-.5px}
 .slider{position:relative;overflow:hidden;border-radius:22px;box-shadow:var(--sh)}
 .track{display:flex;transition:transform .8s cubic-bezier(.7,0,.2,1)}
 [dir=rtl] .track{flex-direction:row}
-.slide{min-width:100%;position:relative;min-height:clamp(260px,40vw,420px);display:flex;align-items:flex-end;color:#fff;background-size:cover;background-position:center}
-.slide:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,10,30,.88),rgba(5,10,30,.1))}
+.slide{min-width:100%;position:relative;background-size:cover;background-position:70% 30%;min-height:clamp(260px,40vw,420px);display:flex;align-items:flex-end;color:#fff;background-size:cover;background-position:center}
+.slide:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,10,30,.8),rgba(5,10,30,0) 65%)}
 .slide div{position:relative;padding:clamp(18px,4vw,44px);max-width:640px}
 .slide h3{font-size:clamp(1.2rem,3vw,2rem)}.slide p{opacity:.9}
 .badge{display:inline-block;background:var(--ac2);color:#001;font-weight:800;border-radius:8px;padding:2px 10px;margin-bottom:8px;font-size:.85rem}
@@ -74,12 +74,12 @@ h2{font-size:clamp(1.4rem,3.2vw,2.2rem);margin-bottom:24px;letter-spacing:-.5px}
 .card{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;overflow:hidden;transition:transform .4s,box-shadow .4s}
 .card:hover{transform:translateY(-8px) rotate(-.4deg);box-shadow:var(--sh)}
 .card img{width:100%;height:190px;object-fit:cover;background:var(--hero)}
-.card div{padding:16px}.card h4{font-size:1.05rem}.card small{color:var(--mut)}
+.card>div{padding:16px}.card h4{font-size:1.05rem}.card small{color:var(--mut)}
 .price{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-weight:800;font-size:1.15rem}
 .price button{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:7px 14px;font-weight:700}
 .brands{overflow:hidden;background:var(--bg2);border-block:1px solid var(--bd);padding:26px 0}
 .bt{display:flex;gap:60px;width:max-content;animation:mq 26s linear infinite}.brands:hover .bt{animation-play-state:paused}
-.bt span{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:800;color:var(--mut);transition:.3s}.bt span:hover{color:var(--ac);transform:scale(1.15)}.bt img{height:30px;width:30px;filter:grayscale(1);opacity:.7}
+.bt span{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:800;color:var(--mut);transition:.3s}.bt span:hover{color:var(--ac);transform:scale(1.15)}.bi{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--ac);color:#fff;font-size:1rem}
 @keyframes mq{to{transform:translateX(-50%)}}
 [dir=rtl] .bt{animation-name:mqr}@keyframes mqr{to{transform:translateX(50%)}}
 .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
@@ -177,18 +177,30 @@ fa:{n1:"تخفیف‌ها",n2:"ویژه",n3:"برندها",n4:"چرا ما",cart
 sl:[["حراج SSD","تا ۴۰٪ تخفیف روی SSD","برنامه‌ها در چند ثانیه اجرا می‌شوند."],["هارد دیسک","حجم بالا، قیمت پایین","هاردهای ۲ تا ۸ ترابایت از ۵۴ دلار."],["رم و کارت گرافیک","عملکرد را ارتقا دهید","رم DDR5 و کارت گرافیک موجود است."],["بازگشت به کار","کیف رایگان با خرید لپ‌تاپ","فقط برای مدت محدود."]],
 tg:["صفحه نمایش","وبکم","کیبورد","تاچ‌پد","پردازنده و خنک‌کننده","باتری"]}};
 const L={en:"English",ko:"한국어",ar:"العربية",fa:"فارسی"};
-const IMG=(k,n,w=800,h=600)=>`https://loremflickr.com/${w}/${h}/${k}?lock=${n}`;
-const slImgs=[IMG("ssd,computer",11,1200,600),IMG("harddrive,computer",12,1200,600),IMG("graphicscard,gpu",13,1200,600),IMG("laptop,desk",14,1200,600)];
+/* ---- Images: built-in vector art (works offline, no blocked sites). To use your own photos, paste Iranian-hosted URLs here, e.g. CUSTOM["Apple MacBook Air 15″ M3"]="https://.../macbook.jpg" ---- */
+const F=(n,w=700)=>`https://commons.wikimedia.org/wiki/Special:FilePath/${n}?width=${w}`;
+const CUSTOM={"Lenovo ThinkPad X1 Carbon":F("Lenovo_ThinkPad_X1_Ultrabook.jpg"),"Lenovo Legion 5 Pro":F("ThinkPad_X220_closed,_x201_on_top.jpg"),"Apple MacBook Air 15″ M3":F("MacBook_Air_(A2681)_front.jpg"),"Apple MacBook Pro 14″ M3 Pro":F("Macbook.jpg")};
+const PAL=[["#dfe8ff","#9db8ff"],["#ffe8d6","#ffb38a"],["#d9f7ef","#7fe0c4"],["#f1e0ff","#c79bff"],["#e4ecf5","#a9bbd3"],["#fff3c9","#ffd460"]];
+const ART={
+laptop:(c,t)=>`<rect x='155' y='70' width='290' height='190' rx='12' fill='#1b2238' stroke='#aab3c7' stroke-width='8'/><rect x='170' y='85' width='260' height='160' rx='4' fill='${c}'/><text x='300' y='173' font-size='24' font-weight='700' fill='#fff' text-anchor='middle' font-family='sans-serif'>${t}</text><path d='M100 270h400l45 38H55z' fill='#c3cad9'/><rect x='260' y='288' width='80' height='8' rx='4' fill='#8f98ad'/>`,
+ssd:()=>`<rect x='110' y='110' width='380' height='190' rx='18' fill='#23293d'/><rect x='135' y='135' width='120' height='140' rx='8' fill='#3a4565'/><rect x='275' y='135' width='90' height='60' rx='8' fill='#3a4565'/><rect x='380' y='135' width='90' height='60' rx='8' fill='#3a4565'/><rect x='275' y='215' width='195' height='60' rx='8' fill='#2f6bff'/><text x='372' y='254' font-size='26' font-weight='800' fill='#fff' text-anchor='middle' font-family='sans-serif'>NVMe SSD</text>`,
+hdd:()=>`<rect x='130' y='70' width='340' height='260' rx='16' fill='#b9c0d0' stroke='#7d879d' stroke-width='6'/><circle cx='290' cy='200' r='95' fill='#e8ecf5' stroke='#8f98ad' stroke-width='5'/><circle cx='290' cy='200' r='28' fill='#8f98ad'/><path d='M410 90l-95 100' stroke='#555f78' stroke-width='9' stroke-linecap='round'/><text x='300' y='320' font-size='20' font-weight='700' fill='#394057' text-anchor='middle' font-family='sans-serif'>HDD 8TB</text>`,
+gpu:()=>`<rect x='70' y='120' width='460' height='150' rx='14' fill='#20263a'/><circle cx='190' cy='195' r='56' fill='#0f1424' stroke='#00d4b4' stroke-width='5'/><circle cx='190' cy='195' r='12' fill='#00d4b4'/><circle cx='400' cy='195' r='56' fill='#0f1424' stroke='#00d4b4' stroke-width='5'/><circle cx='400' cy='195' r='12' fill='#00d4b4'/><rect x='110' y='270' width='300' height='22' fill='#e0b44c'/><text x='300' y='320' font-size='22' font-weight='800' fill='#fff' text-anchor='middle' font-family='sans-serif'>GPU RTX</text>`,
+ram:()=>`<rect x='60' y='140' width='480' height='110' rx='8' fill='#1c7a5b'/><g fill='#1b2238'><rect x='90' y='158' width='70' height='60'/><rect x='175' y='158' width='70' height='60'/><rect x='260' y='158' width='70' height='60'/><rect x='345' y='158' width='70' height='60'/><rect x='430' y='158' width='70' height='60'/></g><rect x='60' y='250' width='480' height='22' fill='#e0b44c'/><text x='300' y='320' font-size='22' font-weight='800' fill='#fff' text-anchor='middle' font-family='sans-serif'>DDR5 RAM</text>`};
+const art=(k,seed=0,t="")=>{const p=PAL[seed%PAL.length],c=["#2f6bff","#e0482f","#1ea39a","#7a4dff","#444c63","#c98a00"][seed%6];const label=(t.split(" ")[0]||"")+" "+(t.split(" ")[1]||"");const dark=["ssd","gpu","ram"].includes(k);
+return "data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${dark?"#4a5da8":p[0]}'/><stop offset='1' stop-color='${dark?"#1a2656":p[1]}'/></linearGradient></defs><rect width='600' height='400' fill='url(#g)'/>${ART[k](c,label.trim())}</svg>`)};
+const slImgs=[art("ssd",0),art("hdd",1),art("gpu",2),art("laptop",3,"NovaBook")];
+const SLR=[slImgs[0],F("Hard_disk_platter_reflection.jpg",1200),slImgs[2],F("MacBook_Air_(Early_2015).jpg",1200)];
 const P=[["Lenovo ThinkPad X1 Carbon","Intel Ultra 7 · 32GB · 1TB","1,649","lenovo,laptop",21],["Lenovo Legion 5 Pro","Ryzen 9 · RTX 4070","1,799","gaming,laptop",22],["Samsung Galaxy Book4 Pro","Ultra 7 · AMOLED 3K","1,449","samsung,laptop",23],["Samsung Galaxy Book4 Ultra","RTX 4050 · 32GB","2,199","samsung,notebook",24],["Apple MacBook Air 15″ M3","M3 · 16GB · 512GB","1,399","macbook,air",25],["Apple MacBook Pro 14″ M3 Pro","M3 Pro · 18GB · 1TB","2,299","macbook,pro",26]];
 const B=[["Lenovo","lenovo"],["Samsung","samsung"],["Apple","apple"],["Microsoft","microsoft"],["Dell","dell"],["HP","hp"],["ASUS","asus"],["Acer","acer"],["MSI","msi"],["Razer","razer"]];
 let lang="en";
 /* build */
 $("#keys").innerHTML="<span></span>".repeat(48);
-$("#bt").innerHTML=[...B,...B].map(b=>`<span><img src="https://cdn.simpleicons.org/${b[1]}" alt="" onerror="this.style.display='none'">${b[0]}</span>`).join("");
-$("#pg").innerHTML=P.map((p,i)=>`<article class="card"><img loading="lazy" src="${IMG(p[3],p[4],600,400)}" alt="${p[0]}" onerror="this.onerror=null;this.src='https://picsum.photos/seed/${p[4]}/600/400'"><div><h4>${p[0]}</h4><small>${p[1]}</small><div class="price"><span>$${p[2]}</span><button data-i="buy">Add</button></div></div></article>`).join("");
+$("#bt").innerHTML=[...B,...B].map(b=>`<span><i class="bi">${b[0][0]}</i>${b[0]}</span>`).join("");
+$("#pg").innerHTML=P.map((p,i)=>`<article class="card"><img loading="lazy" src="${CUSTOM[p[0]]||art('laptop',p[4],p[0])}" data-f="${art('laptop',p[4],p[0])}" onerror="this.onerror=null;this.src=this.dataset.f" alt="${p[0]}"><div><h4>${p[0]}</h4><small>${p[1]}</small><div class="price"><span>$${p[2]}</span><button data-i="buy">Add</button></div></div></article>`).join("");
 function render(){const d=T[lang];
  $$("[data-i]").forEach(e=>{if(d[e.dataset.i])e.textContent=d[e.dataset.i]});
- $("#tr1").innerHTML=d.sl.map((s,i)=>`<div class="slide" style="background-image:url('${slImgs[i]}'),linear-gradient(135deg,#2f6bff,#00d4b4)"><div><span class="badge">-${[40,25,30,15][i]}%</span><h3>${s[1]}</h3><p>${s[0]} — ${s[2]}</p></div></div>`).join("");
+ $("#tr1").innerHTML=d.sl.map((s,i)=>`<div class="slide" style="background-image:url(&quot;${SLR[i]}&quot;),url(&quot;${slImgs[i]}&quot;);background-color:#1b2238"><div><span class="badge">-${[40,25,30,15][i]}%</span><h3>${s[1]}</h3><p>${s[0]} — ${s[2]}</p></div></div>`).join("");
  go(cur);tags();}
 /* hero tags (appear after lid opens, ~10s) */
 const pos=[[50,6],[50,-4],[24,66],[50,92],[82,72],[86,38]];
@@ -215,4 +227,3 @@ render();
 </script>
 </body>
 </html>
-
