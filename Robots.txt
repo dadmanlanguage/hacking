@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dadmanlanguage.github.io/hacking/sitemap.xml
