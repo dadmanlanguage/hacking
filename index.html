@@ -176,7 +176,51 @@ section{padding:32px 4vw}h2{font-size:1.2rem;margin-bottom:16px}h2:after{width:5
 .cat i{color:var(--ac2)}.cat i .si{stroke-width:1.3;width:1em;height:1em}
 .ft a .ico{color:#d4a85a;margin-inline-end:4px}
 .fab.wa{background:#14213a;color:#d4a85a;border:1px solid #d4a85a}
-@media(min-width:900px){#cg{grid-template-columns:repeat(4,1fr)}}</style>
+@media(min-width:900px){#cg{grid-template-columns:repeat(4,1fr)}}
+
+/* ================= GLASS STYLE (applied to existing elements) ================= */
+:root{--bg2:rgba(255,255,255,.42);--gb:rgba(255,255,255,.65);--gs:0 8px 32px rgba(31,58,95,.16),inset 0 1px 0 rgba(255,255,255,.7)}
+[data-theme=dark]{--bg2:rgba(255,255,255,.07);--gb:rgba(255,255,255,.2);--gs:0 8px 32px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.18)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 12% 18%,rgba(212,168,90,.45),transparent 34%),radial-gradient(circle at 88% 32%,rgba(47,107,255,.35),transparent 36%),radial-gradient(circle at 25% 85%,rgba(255,122,217,.28),transparent 34%),radial-gradient(circle at 80% 90%,rgba(0,212,180,.28),transparent 32%)}
+header,.toolbar,.card,.f,.trust,.cat,.tm,details,.langmenu,.brands,.cd>div,.fab.up,.tag,.stats>div{-webkit-backdrop-filter:blur(16px) saturate(165%);backdrop-filter:blur(16px) saturate(165%);border-color:var(--gb)}
+.card,.f,.cat,.tm,details,.langmenu,.trust{box-shadow:var(--gs)}
+header,.toolbar{box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.tb,.arr{-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.tb{background:var(--bg2);border-color:var(--gb)}
+.arr{background:rgba(255,255,255,.55);border:1px solid var(--gb)}
+.cd>div{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.news,.deal{box-shadow:var(--sh),inset 0 1px 0 rgba(255,255,255,.3)}
+.news input{background:rgba(255,255,255,.85)}
+.cat.in:hover,.card:hover,.f:hover{border-color:rgba(255,255,255,.9)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--bg2:rgba(255,255,255,.92)}[data-theme=dark]{--bg2:rgba(21,29,46,.92)}}
+
+/* ================= NEW GLASS SECTIONS ================= */
+.nbx{position:relative;overflow:hidden;isolation:isolate;color:#f3ecda;padding:clamp(48px,7vw,84px) 5vw;background:radial-gradient(circle at 12% 12%,rgba(212,168,90,.55),transparent 32%),radial-gradient(circle at 90% 40%,rgba(47,107,255,.5),transparent 34%),radial-gradient(circle at 15% 78%,rgba(255,122,217,.35),transparent 32%),radial-gradient(circle at 85% 92%,rgba(0,212,180,.35),transparent 30%),linear-gradient(135deg,#14213a,#2a4373 55%,#3b2a5e)}
+.nbx:before,.nbx:after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(40px);animation:nbf 14s ease-in-out infinite alternate}
+.nbx:before{width:380px;height:380px;background:#d4a85a;opacity:.4;top:30%;inset-inline-start:-90px}
+.nbx:after{width:460px;height:460px;background:#6f9bd1;opacity:.4;top:55%;inset-inline-end:-120px;animation-delay:-6s}
+@keyframes nbf{to{transform:translate(60px,-40px) scale(1.2)}}
+.nbx h2{color:#fff;margin-top:70px}.nbx h2:first-child{margin-top:0}
+.gl{background:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.3);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.4)}
+.nbw{max-width:980px;margin:auto}
+.nbf{padding:clamp(20px,4vw,38px)}
+.nbu{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:22px}
+.nbu button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:9px 22px;font-weight:700;transition:.3s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.nbu button:hover{transform:translateY(-2px)}.nbu button.on{background:#d4a85a;color:#14213a;border-color:#d4a85a}
+.nbr{text-align:center}.nbr small{color:#d4a85a;font-weight:700;letter-spacing:.5px}
+.nbr h3{font-size:clamp(1.3rem,3vw,2rem);margin:6px 0;font-family:Georgia,serif}.nbr p{opacity:.85;max-width:520px;margin:0 auto}
+.nbr b{display:block;font-size:1.8rem;margin:12px 0}
+.nbb{display:inline-block;background:#d4a85a;color:#14213a;font-weight:800;border-radius:8px;padding:10px 24px;text-decoration:none;transition:.3s}.nbb:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.nbs{overflow-x:auto;padding:8px 14px}
+.nbt{width:100%;min-width:520px;border-collapse:collapse}.nbt th,.nbt td{padding:14px 12px;text-align:start;border-bottom:1px solid rgba(255,255,255,.18)}
+.nbt thead th{color:#d4a85a;font-family:Georgia,serif}.nbt tbody th{opacity:.75;font-weight:600}.nbt tr:last-child>*{border:0}
+.nbg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.nbg>div{padding:26px;text-align:center;transition:transform .4s}.nbg>div:hover{transform:translateY(-8px)}
+.nbi{font-size:2rem;color:#d4a85a;display:block;margin-bottom:6px}
+.nbn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#d4a85a;color:#14213a;font-weight:800;margin-bottom:8px}
+.nbg h3{font-size:1.05rem;margin-bottom:4px}.nbg p{opacity:.8;font-size:.92rem}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.gl{background:rgba(20,33,58,.75)}}
+</style>
 </head>
 <body>
 <div class="sweep" id="sweep"></div>
@@ -339,6 +383,43 @@ let d=false,x0=0,s0=0;g.addEventListener("pointerdown",e=>{if(e.pointerType!=="m
 addEventListener("pointermove",e=>{if(d)g.scrollLeft=s0-(e.clientX-x0)});
 addEventListener("pointerup",()=>{if(d){d=false;g.classList.remove("drag")}});})();
 render();
+</script>
+
+<!-- ================= NEW GLASS SECTIONS (JS) ================= -->
+<script>
+(function(){
+const D={
+en:{ft:"Find your perfect laptop",u:["Work","Gaming","Creating"],why:["Light, tough, all-day battery for meetings and travel.","High-power performance for the latest games.","Fast and color-accurate for editing and design."],pick:"OUR PICK",view:"View in store",
+ct:"Compare our best sellers",rows:["Chip","Memory","Storage","Price","Warranty"],w:"3 years",
+pt:"How it works",st:[["Choose","Pick your laptop or part."],["Order","Pay online or on delivery."],["Track","Follow it live, 48-hour delivery."],["Enjoy","3-year warranty included."]],
+vt:"More than a store",vs:[["Trade-in","Get credit for your old laptop."],["Easy installments","Split your payment over 12 months."],["Free setup","We install your software and move your data."]]},
+fa:{ft:"لپ‌تاپ مناسب خودتان را پیدا کنید",u:["کار","گیمینگ","طراحی"],why:["سبک، مقاوم و باتری تمام‌روز برای جلسه و سفر.","قدرت بالا برای جدیدترین بازی‌ها.","سریع و با رنگ دقیق برای ادیت و طراحی."],pick:"پیشنهاد ما",view:"مشاهده در فروشگاه",
+ct:"مقایسه پرفروش‌ترین‌ها",rows:["پردازنده","رم","حافظه","قیمت","گارانتی"],w:"۳ سال",
+pt:"روش کار",st:[["انتخاب","لپ‌تاپ یا قطعه را انتخاب کنید."],["سفارش","آنلاین یا در محل پرداخت کنید."],["رهگیری","زنده پیگیری کنید، ارسال ۴۸ ساعته."],["لذت ببرید","۳ سال گارانتی همراه است."]],
+vt:"فراتر از یک فروشگاه",vs:[["تعویض قدیمی","برای لپ‌تاپ قدیمی‌تان اعتبار بگیرید."],["پرداخت اقساطی","پرداخت را تا ۱۲ ماه تقسیم کنید."],["راه‌اندازی رایگان","نرم‌افزار نصب و اطلاعات منتقل می‌کنیم."]]},
+ko:{ft:"나에게 맞는 노트북 찾기",u:["업무","게이밍","크리에이티브"],why:["가볍고 튼튼하며 하루 종일 가는 배터리.","최신 게임을 위한 강력한 성능.","편집과 디자인을 위한 빠른 속도와 정확한 색."],pick:"추천",view:"스토어에서 보기",
+ct:"베스트셀러 비교",rows:["칩","메모리","저장공간","가격","보증"],w:"3년",
+pt:"이용 방법",st:[["선택","노트북이나 부품을 고르세요."],["주문","온라인 또는 현장 결제."],["추적","실시간 추적, 48시간 배송."],["즐기기","3년 보증 포함."]],
+vt:"스토어 그 이상",vs:[["보상 판매","기존 노트북 크레딧 받기."],["간편 할부","최대 12개월 분할 결제."],["무료 세팅","소프트웨어 설치와 데이터 이전."]]},
+ar:{ft:"اعثر على حاسوبك المثالي",u:["العمل","الألعاب","التصميم"],why:["خفيف ومتين وبطارية تدوم طوال اليوم.","أداء قوي لأحدث الألعاب.","سريع ودقيق الألوان للمونتاج والتصميم."],pick:"اختيارنا",view:"عرض في المتجر",
+ct:"قارن الأكثر مبيعاً",rows:["المعالج","الذاكرة","التخزين","السعر","الضمان"],w:"3 سنوات",
+pt:"كيف نعمل",st:[["اختر","اختر حاسوبك أو القطعة."],["اطلب","ادفع أونلاين أو عند الاستلام."],["تتبّع","تتبع مباشر وتوصيل خلال 48 ساعة."],["استمتع","ضمان 3 سنوات مشمول."]],
+vt:"أكثر من مجرد متجر",vs:[["استبدال","احصل على رصيد لحاسوبك القديم."],["تقسيط سهل","قسّم الدفع على 12 شهراً."],["تهيئة مجانية","نثبّت البرامج وننقل بياناتك."]]}};
+const PK=[["Lenovo ThinkPad X1 Carbon","Intel Ultra 7 · 32GB · 1TB","1,649"],["Lenovo Legion 5 Pro","Ryzen 9 · RTX 4070","1,799"],["Apple MacBook Pro 14″ M3 Pro","M3 Pro · 18GB · 1TB","2,299"]];
+const CM=[["ThinkPad X1 Carbon","Ultra 7","32GB","1TB","$1,649"],["MacBook Air 15″","M3","16GB","512GB","$1,399"],["MacBook Pro 14″","M3 Pro","18GB","1TB","$2,299"]];
+const sec=document.createElement("section");sec.className="nbx";sec.id="nbx";
+document.querySelector(".news").closest("section").before(sec);
+let u=0;
+function R(){const d=D[lang]||D.en,p=PK[u],ic=n=>`<span class="ico nbi">${icon(n)}</span>`;
+sec.innerHTML=`<div class="nbw"><h2>${d.ft}</h2><div class="gl nbf rv"><div class="nbu">${d.u.map((x,i)=>`<button class="${i==u?"on":""}" data-u="${i}">${x}</button>`).join("")}</div><div class="nbr"><small>${d.pick}</small><h3>${p[0]}</h3><p>${p[1]}<br>${d.why[u]}</p><b>$${p[2]}</b><a class="nbb" href="#feat">${d.view}</a></div></div>
+<h2>${d.ct}</h2><div class="gl nbs rv"><table class="nbt"><thead><tr><th></th>${CM.map(c=>`<th>${c[0]}</th>`).join("")}</tr></thead><tbody>${d.rows.map((r,i)=>`<tr><th>${r}</th>${CM.map(c=>`<td>${i<4?c[i+1]:d.w}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+<h2>${d.pt}</h2><div class="nbg">${d.st.map((s,i)=>`<div class="gl rv" style="transition-delay:${i*.12}s"><span class="nbn">${i+1}</span><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join("")}</div>
+<h2>${d.vt}</h2><div class="nbg">${d.vs.map((s,i)=>`<div class="gl rv" style="transition-delay:${i*.12}s">${ic(["laptop","card","chip"][i])}<h3>${s[0]}</h3><p>${s[1]}</p></div>`).join("")}</div></div>`;
+sec.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{u=+b.dataset.u;R()});
+sec.querySelectorAll(".rv").forEach(e=>{if(typeof io!=="undefined")io.observe(e);else e.classList.add("in")})}
+document.querySelectorAll("#lm button").forEach(b=>b.addEventListener("click",R));
+R();
+})();
 </script>
 </body>
 </html>
