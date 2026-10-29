@@ -194,32 +194,43 @@ header,.toolbar{box-shadow:0 4px 24px rgba(0,0,0,.08)}
 .cat.in:hover,.card:hover,.f:hover{border-color:rgba(255,255,255,.9)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--bg2:rgba(255,255,255,.92)}[data-theme=dark]{--bg2:rgba(21,29,46,.92)}}
 
-/* ================= NEW GLASS SECTIONS ================= */
-.nbx{position:relative;overflow:hidden;isolation:isolate;color:#f3ecda;padding:clamp(48px,7vw,84px) 5vw;background:radial-gradient(circle at 12% 12%,rgba(212,168,90,.55),transparent 32%),radial-gradient(circle at 90% 40%,rgba(47,107,255,.5),transparent 34%),radial-gradient(circle at 15% 78%,rgba(255,122,217,.35),transparent 32%),radial-gradient(circle at 85% 92%,rgba(0,212,180,.35),transparent 30%),linear-gradient(135deg,#14213a,#2a4373 55%,#3b2a5e)}
-.nbx:before,.nbx:after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(40px);animation:nbf 14s ease-in-out infinite alternate}
-.nbx:before{width:380px;height:380px;background:#d4a85a;opacity:.4;top:30%;inset-inline-start:-90px}
-.nbx:after{width:460px;height:460px;background:#6f9bd1;opacity:.4;top:55%;inset-inline-end:-120px;animation-delay:-6s}
-@keyframes nbf{to{transform:translate(60px,-40px) scale(1.2)}}
-.nbx h2{color:#fff;margin-top:70px}.nbx h2:first-child{margin-top:0}
-.gl{background:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.3);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.4)}
+/* ================= FINDER / COMPARE / STEPS SECTIONS (theme-matched) ================= */
+.nbx{position:relative;color:var(--tx);padding:clamp(48px,7vw,84px) 5vw;background:transparent}
+.nbx h2{margin-top:70px}.nbx h2:first-child{margin-top:0}
+.gl{background:var(--bg2);-webkit-backdrop-filter:blur(16px) saturate(165%);backdrop-filter:blur(16px) saturate(165%);border:1px solid var(--gb);border-radius:10px;box-shadow:var(--gs)}
 .nbw{max-width:980px;margin:auto}
 .nbf{padding:clamp(20px,4vw,38px)}
 .nbu{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:22px}
-.nbu button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:9px 22px;font-weight:700;transition:.3s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.nbu button:hover{transform:translateY(-2px)}.nbu button.on{background:#d4a85a;color:#14213a;border-color:#d4a85a}
-.nbr{text-align:center}.nbr small{color:#d4a85a;font-weight:700;letter-spacing:.5px}
-.nbr h3{font-size:clamp(1.3rem,3vw,2rem);margin:6px 0;font-family:Georgia,serif}.nbr p{opacity:.85;max-width:520px;margin:0 auto}
-.nbr b{display:block;font-size:1.8rem;margin:12px 0}
-.nbb{display:inline-block;background:#d4a85a;color:#14213a;font-weight:800;border-radius:8px;padding:10px 24px;text-decoration:none;transition:.3s}.nbb:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.nbu button{background:var(--bg2);border:1px solid var(--gb);color:var(--tx);border-radius:6px;padding:9px 22px;font-weight:700;transition:.3s;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.nbu button:hover{transform:translateY(-2px);border-color:var(--ac)}
+.nbu button.on{background:var(--ac);color:var(--on);border-color:var(--ac)}
+.nbr{text-align:center}.nbr small{color:var(--ac2);font-weight:700;letter-spacing:.5px}
+.nbr h3{font-size:clamp(1.3rem,3vw,2rem);margin:6px 0;font-family:Georgia,"Noto Naskh Arabic","Noto Serif KR",serif}
+.nbr p{color:var(--mut);max-width:520px;margin:0 auto}
+.nbr b{display:block;font-size:1.8rem;margin:12px 0;color:var(--ac)}
+.nbb{display:inline-block;background:var(--ac);color:var(--on);font-weight:700;border-radius:6px;padding:11px 26px;text-decoration:none;border:2px solid var(--ac);transition:.3s}
+.nbb:hover{transform:translateY(-3px);box-shadow:var(--sh)}
 .nbs{overflow-x:auto;padding:8px 14px}
-.nbt{width:100%;min-width:520px;border-collapse:collapse}.nbt th,.nbt td{padding:14px 12px;text-align:start;border-bottom:1px solid rgba(255,255,255,.18)}
-.nbt thead th{color:#d4a85a;font-family:Georgia,serif}.nbt tbody th{opacity:.75;font-weight:600}.nbt tr:last-child>*{border:0}
+.nbt{width:100%;min-width:520px;border-collapse:collapse}
+.nbt th,.nbt td{padding:14px 12px;text-align:start;border-bottom:1px solid var(--bd)}
+.nbt thead th{color:var(--ac2);font-family:Georgia,"Noto Naskh Arabic","Noto Serif KR",serif}
+.nbt tbody th{color:var(--mut);font-weight:600}
+.nbt tr:last-child>*{border:0}
 .nbg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
-.nbg>div{padding:26px;text-align:center;transition:transform .4s}.nbg>div:hover{transform:translateY(-8px)}
-.nbi{font-size:2rem;color:#d4a85a;display:block;margin-bottom:6px}
-.nbn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#d4a85a;color:#14213a;font-weight:800;margin-bottom:8px}
-.nbg h3{font-size:1.05rem;margin-bottom:4px}.nbg p{opacity:.8;font-size:.92rem}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.gl{background:rgba(20,33,58,.75)}}
+.nbg>div{padding:26px;text-align:center;transition:transform .4s,border-color .4s,opacity .8s ease}
+.nbg>div:hover{transform:translateY(-8px);border-color:var(--ac2)}
+.nbi{width:64px;height:64px;border:1px solid var(--ac2);border-radius:50%;display:grid;place-items:center;font-size:1.7rem;color:var(--ac2);margin:0 auto 12px}
+.nbi .si{stroke-width:1.4}
+.nbn{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--ac2);color:var(--ac2);font-weight:800;margin-bottom:8px;font-family:Georgia,serif}
+.nbg h3{font-size:1.05rem;margin-bottom:4px}
+.nbg p{color:var(--mut);font-size:.92rem}
+.nbg>div.rv.in:hover{transform:translateY(-8px)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.gl{background:var(--bg2)}}
+@media(max-width:600px){
+.nbx{padding:32px 4vw}.nbx h2{margin-top:44px}
+.nbf{padding:16px}.nbu button{padding:6px 14px;font-size:.85rem}
+.nbi{width:50px;height:50px;font-size:1.4rem}.nbg>div{padding:18px}
+}
 </style>
 </head>
 <body>
@@ -385,7 +396,7 @@ addEventListener("pointerup",()=>{if(d){d=false;g.classList.remove("drag")}});})
 render();
 </script>
 
-<!-- ================= NEW GLASS SECTIONS (JS) ================= -->
+<!-- ================= FINDER / COMPARE / STEPS SECTIONS (JS) ================= -->
 <script>
 (function(){
 const D={
